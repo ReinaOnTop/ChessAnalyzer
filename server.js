@@ -1,15 +1,10 @@
-// server.js
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(cors());
-app.use(express.json());
-app.use(express.static('public')); // serve frontend
-
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Chess Analyzer is live' });
+// Add to server.js
+app.post('/api/analyze', (req, res) => {
+  const { fen } = req.body;
+  // Mock response (replace with Stockfish later)
+  res.json({
+    evaluation: '+0.5',
+    bestMove: 'e2e4',
+    lines: ['e2e4', 'e7e5', 'g1f3']
+  });
 });
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
